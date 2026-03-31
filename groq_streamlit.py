@@ -23,25 +23,39 @@ st.markdown(f"""
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
     <style>
-    /* Background */
-    .stApp {{
-        background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-        color: white;
+
+    /* ---- Full screen dark background ---- */
+    html, body, [data-testid="stAppViewContainer"], 
+    [data-testid="stHeader"], [data-testid="stToolbar"],
+    [data-testid="stDecoration"], [data-testid="stMainBlockContainer"],
+    .stApp, .main, section.main > div {{
+        background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
+        color: white !important;
     }}
 
-    /* Profile picture - no box, no name */
+    /* Remove white top bar */
+    [data-testid="stHeader"] {{
+        background: #1a1a2e !important;
+    }}
+
+    /* Remove white bottom bar */
+    footer {{
+        background: #1a1a2e !important;
+    }}
+
+    /* Profile picture - top right */
     .profile-container {{
         position: fixed;
         top: 60px;
-        left: 15px;
+        right: 20px;
         z-index: 999;
         text-align: center;
     }}
     .profile-container img {{
-        width: 120px;
-        height: 120px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
-        border: 3px solid #00d4ff;
+        border: 3px solid white;
         object-fit: cover;
     }}
 
@@ -64,6 +78,18 @@ st.markdown(f"""
     /* All chat text in white */
     .stChatMessage p {{
         color: white !important;
+    }}
+
+    /* Input box dark styling */
+    [data-testid="stChatInput"] {{
+        background-color: #16213e !important;
+        color: white !important;
+        border: 1px solid #00d4ff !important;
+    }}
+
+    [data-testid="stChatInput"] textarea {{
+        color: white !important;
+        background-color: #16213e !important;
     }}
 
     </style>
