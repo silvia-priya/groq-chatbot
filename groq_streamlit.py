@@ -7,7 +7,7 @@ import base64
 load_dotenv("keys.env")
 
 # ---- Page Config ----
-st.set_page_config(page_title="Groq Chatbot", page_icon="🤖", layout="wide")
+st.set_page_config(page_title="Silvia's Chatbot", page_icon="🤖", layout="wide")
 
 # ---- Function to load local image ----
 def get_base64(image_file):
@@ -20,6 +20,8 @@ img = get_base64("profile.jpeg")
 
 # ---- Background + Profile Style ----
 st.markdown(f"""
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
     <style>
     /* Background */
     .stApp {{
@@ -27,40 +29,32 @@ st.markdown(f"""
         color: white;
     }}
 
-    /* Profile picture - bigger */
+    /* Profile picture - no box, no name */
     .profile-container {{
         position: fixed;
         top: 60px;
         left: 15px;
         z-index: 999;
         text-align: center;
-        background-color: white;
-        border-radius: 15px;
-        padding: 10px;
-        width: 100px;
     }}
     .profile-container img {{
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
-        border: 2px solid #00d4ff;
+        border: 3px solid #00d4ff;
         object-fit: cover;
     }}
-    .profile-container p {{
-        color: #000000;
-        font-size: 12px;
-        margin-top: 6px;
-        font-weight: bold;
-    }}
 
-    /* Title in center */
+    /* Title - centered, business font */
     h1 {{
         text-align: center;
-        font-size: 1.8rem !important;
+        font-size: 2rem !important;
         color: white !important;
+        font-family: 'Playfair Display', serif !important;
+        letter-spacing: 2px;
     }}
 
-    /* Remove chat bubble background colors */
+    /* Remove chat bubble backgrounds */
     .stChatMessage {{
         background-color: transparent !important;
         border: none !important;
@@ -76,7 +70,6 @@ st.markdown(f"""
 
     <div class="profile-container">
         <img src="data:image/jpeg;base64,{img}" alt="Creator"/>
-        <p>Made by<br/>Silvia Priya</p>
     </div>
 """, unsafe_allow_html=True)
 
@@ -88,6 +81,10 @@ if "client" not in st.session_state:
     st.session_state.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 if "conversation" not in st.session_state:
     st.session_state.conversation = []
+
+# ---- Show welcome message on first load ----
+if len(st.session_state.conversation) == 0:
+    st.chat_message("assistant").write("Hello! What's on your mind today? 😊")
 
 SYSTEM_MSG = """You are a helpful Q&A assistant.
 Answer questions clearly and concisely.
