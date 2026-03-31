@@ -25,7 +25,7 @@ st.markdown(f"""
     <style>
 
     /* ---- Full screen dark background ---- */
-    html, body, [data-testid="stAppViewContainer"], 
+    html, body, [data-testid="stAppViewContainer"],
     [data-testid="stHeader"], [data-testid="stToolbar"],
     [data-testid="stDecoration"], [data-testid="stMainBlockContainer"],
     .stApp, .main, section.main > div {{
@@ -39,8 +39,8 @@ st.markdown(f"""
     }}
 
     /* Remove white bottom bar */
-    footer {{
-        background: #1a1a2e !important;
+    footer, [data-testid="stBottom"] {{
+        background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460) !important;
     }}
 
     /* Profile picture - top right */
@@ -59,13 +59,15 @@ st.markdown(f"""
         object-fit: cover;
     }}
 
-    /* Title - centered, business font */
+    /* Title - centered, moved up, business font */
     h1 {{
         text-align: center;
         font-size: 2rem !important;
         color: white !important;
         font-family: 'Playfair Display', serif !important;
         letter-spacing: 2px;
+        margin-top: -50px !important;
+        padding-top: 0px !important;
     }}
 
     /* Remove chat bubble backgrounds */
@@ -80,11 +82,11 @@ st.markdown(f"""
         color: white !important;
     }}
 
-    /* Input box dark styling */
+    /* Input box - white border, dark background */
     [data-testid="stChatInput"] {{
         background-color: #16213e !important;
-        color: white !important;
-        border: 1px solid #00d4ff !important;
+        border: 2px solid white !important;
+        border-radius: 10px !important;
     }}
 
     [data-testid="stChatInput"] textarea {{
