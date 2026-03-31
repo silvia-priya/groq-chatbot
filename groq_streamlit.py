@@ -9,8 +9,8 @@ st.title("🤖 Groq Chatbot")
 
 # Initialize everything inside session state
 if "client" not in st.session_state:
-    #st.session_state.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    st.session_state.client = Groq(api_key="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")
+    st.session_state.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    
 if "conversation" not in st.session_state:
     st.session_state.conversation = []
 
