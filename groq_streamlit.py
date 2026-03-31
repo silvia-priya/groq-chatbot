@@ -16,35 +16,62 @@ def get_base64(image_file):
     return base64.b64encode(data).decode()
 
 # ---- Load your photo ----
-img = get_base64("profile.jpeg")  
+img = get_base64("profile.jpeg")
 
 # ---- Background + Profile Style ----
 st.markdown(f"""
     <style>
+    /* Background */
     .stApp {{
         background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
         color: white;
     }}
+
+    /* Profile picture - bigger */
     .profile-container {{
         position: fixed;
         top: 60px;
         left: 15px;
         z-index: 999;
         text-align: center;
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px;
+        width: 100px;
     }}
     .profile-container img {{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         border: 2px solid #00d4ff;
         object-fit: cover;
     }}
     .profile-container p {{
-        color: #00d4ff;
-        font-size: 11px;
-        margin-top: 4px;
+        color: #000000;
+        font-size: 12px;
+        margin-top: 6px;
         font-weight: bold;
     }}
+
+    /* Title in center */
+    h1 {{
+        text-align: center;
+        font-size: 1.8rem !important;
+        color: white !important;
+    }}
+
+    /* Remove chat bubble background colors */
+    .stChatMessage {{
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }}
+
+    /* All chat text in white */
+    .stChatMessage p {{
+        color: white !important;
+    }}
+
     </style>
 
     <div class="profile-container">
@@ -54,7 +81,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ---- App Title ----
-st.title("🤖 Silvia's Chatbot")
+st.title("Silvia's Chatbot")
 
 # ---- Initialize session state ----
 if "client" not in st.session_state:
